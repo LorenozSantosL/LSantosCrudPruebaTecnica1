@@ -138,14 +138,12 @@ namespace BL
                 result.EX = ex;
                 result.Message = "Error: " + result.EX;
             }
-
             return result;
         }
 
         public static ML.Result Delete(int IdLibro)
         {
             ML.Result result = new ML.Result();
-
             try
             {
                 using(SqlConnection context = new SqlConnection(DL.Conexion.GetConexion()))
