@@ -1,0 +1,65 @@
+﻿@model ML.Libro 
+@{
+    ViewBag.Title = "GettAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Libros</h2>
+    <div class="row">
+        <div style="float:right">
+            @Html.ActionLink("+", "Form", "Libro", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+    </div>
+
+    <div class="row">
+
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Id Libro</th>
+                    <th>Nombre</th>
+                    <th>Autor</th>
+                    <th>Numero de Páginas</th>
+                    <th>Fecha Publicación</th>
+                    <th>Editorial</th>
+                    <th>Edicion</th>
+                    <th>Género</th>
+                    <th>Editar</th>
+                    <th>Elimiar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(ML.Libro libro in Model.Libros)
+            {
+                    <tr>
+                        <td class="hidden">@libro.IdLibro</td>
+                        <td>@libro.Nombre</td>
+                        <td class="hiden">@libro.Autor.IdAutor</td>
+                        <td>@libro.Autor.Nombre</td>
+                        <td>@libro.NumeroPaginas</td>
+                        <td>@libro.FechaPublicacion</td>
+                        <td class="hiden">@libro.Editorial.IdEditorial</td>
+                        <td>@libro.Editorial.Nombre</td>
+                        <td>@libro.Edicion</td>
+                        <td class="hiden">@libro.Genero.IdGenero</td>
+                        <td>@libro.Genero.Nombre</td>
+
+                        <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Libro", new {IdLibro = libro.IdLibro})"></a></td>
+                        <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Libro", new {IdLibro = libro.IdLibro})" ></a></td>
+                    </tr>
+            }
+
+            </tbody>
+
+
+        </table>
+
+    </div>
+
+
+</div>
+
+
+
